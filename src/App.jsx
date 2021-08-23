@@ -250,17 +250,17 @@ const StyledApp = styled.main`
   }
   .navPhone {
     display: none;
+    z-index: 101;
     @media screen and (max-width: 998px) {
       display: block;
       transition: 0.4s ease-in-out;
       overflow: hidden;
       position: fixed;
-      padding-top: 68px;
-      top: 0;
+      top: 68px;
       right: 0;
       left: calc(0px - var(--all-width));
       width: var(--all-width);
-      height: 100vh;
+      bottom: 0;
       background-color: var(--phone-nav-bg);
       .links {
         height: 100%;
@@ -295,7 +295,6 @@ const StyledApp = styled.main`
     .top {
       opacity: 0.8;
       padding: 2rem 3rem;
-      opacity: 0.7;
       :hover {
         opacity: 1;
       }
