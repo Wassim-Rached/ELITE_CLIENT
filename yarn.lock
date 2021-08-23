@@ -1538,7 +1538,7 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@material-ui/core@^4.12.3":
+"@material-ui/core@^4.11.1", "@material-ui/core@^4.12.3":
   version "4.12.3"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.12.3.tgz#80d665caf0f1f034e52355c5450c0e38b099d3ca"
   integrity sha512-sdpgI/PL56QVsEJldwEe4FFaFTLUqN+rd7sSZiRCdx2E/C7z5yK0y/khAWVBH24tXwto7I1hCzNWfJGZIYJKnw==
@@ -1555,6 +1555,13 @@
     prop-types "^15.7.2"
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
+
+"@material-ui/icons@^4.9.1":
+  version "4.11.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.2.tgz#b3a7353266519cd743b6461ae9fdfcb1b25eb4c5"
+  integrity sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
 
 "@material-ui/styles@^4.11.4":
   version "4.11.4"
@@ -9537,6 +9544,14 @@ react-scripts@4.0.3:
     workbox-webpack-plugin "5.1.4"
   optionalDependencies:
     fsevents "^2.1.3"
+
+react-scroll-up-btn@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-scroll-up-btn/-/react-scroll-up-btn-1.0.4.tgz#ec358a80a92a02fd030f15907aaa73cf90b194bf"
+  integrity sha512-jiUcLVx5Cc0VY1s20DIewTUmvyKMev/KxbYrMlW08ARZvt00lm77dKSPRQw7QKZ+EIhSodloeH5FCezVjR9Zsw==
+  dependencies:
+    "@material-ui/core" "^4.11.1"
+    "@material-ui/icons" "^4.9.1"
 
 react-transition-group@^4.4.0:
   version "4.4.2"

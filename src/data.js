@@ -26,3 +26,11 @@ export const Posts=[
         desc:"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates aperiam quos, velit quia voluptatum itaque",
     },
 ]
+export const User = {
+    _id:1,
+    profileImage:"http://localhost:3000/images/fixed/wassim.gif",
+    name:"wa55death404",
+    email:"wa55death404@gmail.com",
+    password:"wa55death404",
+    isAdmin:true,
+}

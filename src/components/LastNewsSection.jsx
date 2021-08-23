@@ -4,7 +4,7 @@ import { Posts } from "../data.js";
 
 export default function LastNewsSection() {
   return (
-    <LastNewsSectionStyled>
+    <LastNewsSectionStyled id="LastNews">
       <div className="containerSectionSmall">
         <h1 className="title">Last News!</h1>
         <div className="NewsContainer">

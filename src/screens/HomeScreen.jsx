@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 //sections
 import DiscordSection from "../components/DiscordSection";

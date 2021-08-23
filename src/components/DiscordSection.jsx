@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function DiscordSection() {
   return (
-    <DiscordSectionStyled>
+    <DiscordSectionStyled id="Discord">
       <img src="./images/fixed/discordCapture.png" alt="" />
       <div className="text">
         <h1>Join Our Discord community!</h1>

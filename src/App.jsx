@@ -4,11 +4,22 @@ import Switch from "@material-ui/core/Switch";
 import { BrowserRouter, Link, Route, Switch as swap } from "react-router-dom";
 import styled from "styled-components";
 import { MainContainer } from "./styles/Layouts";
+import ScrollUpButton from "react-scroll-up-btn";
+//data
+import { User } from "./data.js";
+//screens
+import SignInScreen from "./screens/SignInScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+//components
+import DontMiss from "./components/DontMiss";
 
 function App() {
   const [theme, setTheme] = useState("darkTheme");
   const [checked, setChecked] = useState(false);
   const [activeNav, setActiveNav] = useState(false);
+  const [userInfo, setUserInfo] = useState("");
+
   useEffect(() => {
     document.documentElement.className = theme;
   }, [theme]);
@@ -27,17 +38,28 @@ function App() {
       <StyledApp>
         <header>
           <nav>
-            <div className="logo">
-              <img src="./images/fixed/logo.png" alt="Elite" />
-              <span>elite</span>
-            </div>
+            <Link to="/">
+              <div className="logo">
+                <img
+                  src="http://localhost:3000/images/fixed/logo.png"
+                  alt="Elite"
+                />
+                <span className="navPx">elite</span>
+              </div>
+            </Link>
             <ul className="links">
               <li>
                 <a href="#HowToJoin">howToJoin</a>
               </li>
-              <li>rules</li>
-              <li>discord</li>
-              <li>getRole</li>
+              <li>
+                <a href="#Discord">Discord</a>
+              </li>
+              <li>
+                <a href="#LastNews">Last News</a>
+              </li>
+              <li>
+                <Link to="/rules">rules</Link>
+              </li>
               <li>
                 <Switch
                   value=""
@@ -47,11 +69,32 @@ function App() {
                   onClick={themeToggler}
                 />
               </li>
+              {userInfo ? (
+                <li>
+                  <div className="signOut">SignOut</div>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
-            <div className="btns">
-              <button className="register">register</button>
-              <button className="signIn">signIn</button>
-            </div>
+            {userInfo ? (
+              <div className="user">
+                <Link className="user" to={"/profile/" + User._id}>
+                  <span className="navPx">{User.name}</span>
+                  <img src={User.profileImage} alt="profileImg" />
+                </Link>
+              </div>
+            ) : (
+              <div className="btns">
+                <Link to="/register">
+                  <div className="register">register</div>
+                </Link>
+                <Link to="/signin">
+                  <div className="signIn">signIn</div>
+                </Link>
+              </div>
+            )}
+
             <div
               className={activeNav ? "humberger active" : "humberger"}
               onClick={() => setActiveNav(!activeNav)}
@@ -64,10 +107,27 @@ function App() {
         </header>
         <div className={activeNav ? "navPhone activeNav" : "navPhone"}>
           <ul className="links">
-            <li>howToJoin</li>
-            <li>rules</li>
-            <li>discord</li>
-            <li>getRole</li>
+            <li>
+              <a onClick={() => setActiveNav(!activeNav)} href="#HowToJoin">
+                howToJoin
+              </a>
+            </li>
+            <li>
+              <a onClick={() => setActiveNav(!activeNav)} href="#Discord">
+                Discord
+              </a>
+            </li>
+            <li>
+              <a onClick={() => setActiveNav(!activeNav)} href="#LastNews">
+                Last News
+              </a>
+            </li>
+            <li>
+              <Link onClick={() => setActiveNav(!activeNav)} to="/rules">
+                rules
+              </Link>
+            </li>
+
             <li>
               <Switch
                 value=""
@@ -77,54 +137,52 @@ function App() {
                 onClick={themeToggler}
               />
             </li>
-            <li className="register btn">register</li>
-            <li className="signin btn">signin</li>
+            {!userInfo ? (
+              <>
+                <li
+                  onClick={() => setActiveNav(!activeNav)}
+                  className="register btn"
+                >
+                  register
+                </li>
+                <li
+                  onClick={() => setActiveNav(!activeNav)}
+                  className="signin btn"
+                >
+                  signin
+                </li>
+              </>
+            ) : (
+              <li>
+                <div
+                  onClick={() => setActiveNav(!activeNav)}
+                  className="signOut"
+                >
+                  SignOut
+                </div>
+              </li>
+            )}
           </ul>
         </div>
         <MainContainer>
-          <Route component={HomeScreen} />
+          <swap>
+            <Route path="/" component={HomeScreen} exact />
+            <Route path="/signin" component={SignInScreen} exact />
+            <Route path="/register" component={RegisterScreen} exact />
+            <Route path="/profile/:userId" component={ProfileScreen} exact />
+          </swap>
+          {!userInfo ? <DontMiss /> : ""}
         </MainContainer>
         <footer>
-          <div className="top">
-            <h1>Don't Miss Out!</h1>
-            <p className="now">
-              Register now and unlock features, abilites and More!
-            </p>
-            <form>
-              <div className="input">
-                <label htmlFor="username">username:</label>
-                <input type="text" id="username" placeholder="username..." />
-              </div>
-              <div className="input">
-                <label htmlFor="email">email:</label>
-                <input type="email" id="email" placeholder="email" />
-              </div>
-              <div className="input">
-                <label htmlFor="passowrd">passowrd:</label>
-                <input
-                  type="passowrd"
-                  id="passowrd"
-                  placeholder="password..."
-                />
-              </div>
-              <div className="input">
-                <label htmlFor="confirm">confirm passowrd:</label>
-                <input
-                  type="passowrd"
-                  id="confirm"
-                  placeholder="confirm password..."
-                />
-              </div>
-              <div className="btncont">
-                <button>Register</button>
-              </div>
-            </form>
-            <p className="dont">
-              Already have an account? <a href="#">SignIn</a>
-            </p>
-          </div>
           <div className="bottom">All rights reserved</div>
         </footer>
+        {/* <div className="toTop">
+          <ScrollUpButton
+            behavior={"smooth"}
+            IconSize={"3rem"}
+            appearCoordinate={1200}
+          />
+        </div> */}
       </StyledApp>
     </BrowserRouter>
   );
@@ -139,7 +197,6 @@ const StyledApp = styled.main`
     right: 0;
     max-width: 100vw;
     nav {
-      opacity: 0.8;
       margin: 0 auto;
       max-width: var(--max-width);
       min-width: var(--min-width);
@@ -147,9 +204,6 @@ const StyledApp = styled.main`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      :hover {
-        opacity: 1;
-      }
       .logo {
         display: flex;
         align-items: center;
@@ -179,7 +233,11 @@ const StyledApp = styled.main`
       }
       .btns {
         display: flex;
-        button {
+        div {
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           text-transform: capitalize;
           height: 40px;
           border-radius: 20px;
@@ -198,6 +256,31 @@ const StyledApp = styled.main`
         }
         @media screen and (max-width: 998px) {
           display: none;
+        }
+      }
+      .user {
+        width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        img {
+          margin-left: 7px;
+          min-width: 50px;
+          max-width: 50px;
+          min-height: 50px;
+          max-height: 50px;
+          border-radius: 50%;
+        }
+        span {
+          color: var(--strong-font-color);
+          font-weight: 400;
+          font-size: 1.1rem;
+        }
+        :hover {
+          span {
+            color: var(--blue-color);
+          }
         }
       }
       .humberger {
@@ -248,6 +331,26 @@ const StyledApp = styled.main`
       }
     }
   }
+  .toTop {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    position: fixed;
+    height: 50px;
+    border-radius: 50%;
+    width: 50px;
+    bottom: 42px;
+    left: calc(50vw - 25px);
+    right: calc(50vw - 25px);
+    button {
+      background-color: #f6d6027a;
+      :hover {
+        background-color: var(--primairy-color);
+      }
+    }
+  }
   .navPhone {
     display: none;
     z-index: 101;
@@ -292,70 +395,8 @@ const StyledApp = styled.main`
   }
   footer {
     width: 100%;
-    .top {
-      opacity: 0.8;
-      padding: 2rem 3rem;
-      :hover {
-        opacity: 1;
-      }
-      @media screen and (max-width: 399px) {
-        padding: 1rem 1.5rem;
-      }
-      h1 {
-        color: var(--strong-font-color);
-        font-weight: 600;
-      }
-      .now {
-        font-size: 0.9rem;
-      }
-      form {
-        padding: 20px 0;
-        width: 100%;
-        gap: 20px;
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        @media screen and (max-width: 1130px) {
-          justify-content: left;
-        }
-        .input {
-          flex-wrap: wrap;
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          max-width: 500px;
-          label {
-            width: 150px;
-          }
-          input {
-            padding: 4px;
-            width: 280px;
-          }
-        }
-        .btncont {
-          width: 100%;
-          button {
-            text-transform: capitalize;
-            width: 100%;
-            max-width: 280px;
-            font-weight: 400;
-            font-size: 1.1rem;
-            padding: 7px;
-            background-color: var(--blue-color);
-            color: #fff;
-            margin: 0 auto;
-          }
-        }
-      }
-      .dont {
-        font-size: 0.9rem;
-        color: var(--light-font-color);
-        a {
-          color: var(--blue-color);
-        }
-      }
-    }
     .bottom {
+      z-index: 92;
       border-top: 2px solid #f9b82c;
       padding: 7px;
       font-size: 1.1rem;
