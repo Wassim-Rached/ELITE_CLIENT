@@ -40,7 +40,6 @@ html{
   scroll-behavior: smooth;
 }
 body{
-  overflow-x: hidden;
   min-height:100vh ;
   max-width: 100vw;
   position: relative;

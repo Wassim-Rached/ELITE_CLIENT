@@ -20,6 +20,7 @@ export default function DiscordSection() {
   );
 }
 const DiscordSectionStyled = styled.section`
+  max-width: 100vw;
   min-width: var(--min-width);
   margin: 0;
   background-color: var(--secondary-bg);
@@ -38,7 +39,7 @@ const DiscordSectionStyled = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
+    align-items: center;
     h1 {
       text-transform: capitalize;
       font-size: 1.8rem;
@@ -47,10 +48,9 @@ const DiscordSectionStyled = styled.section`
     }
     p {
       color: var(--light-font-color);
-      padding-left: 25px;
+      padding-left: 15px;
     }
     .img {
-      padding-left: 25px;
       cursor: pointer;
       display: flex;
       justify-content: center;

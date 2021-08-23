@@ -63,9 +63,6 @@ function App() {
           </nav>
         </header>
         <div className={activeNav ? "navPhone activeNav" : "navPhone"}>
-          <div className="circle1"></div>
-          <div className="circle2"></div>
-          <div className="circle3"></div>
           <ul className="links">
             <li>howToJoin</li>
             <li>rules</li>
@@ -135,11 +132,11 @@ function App() {
 const StyledApp = styled.main`
   header {
     z-index: 20;
-    width: 100%;
     background-color: var(--primairy-color);
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     max-width: 100vw;
     nav {
       opacity: 0.8;

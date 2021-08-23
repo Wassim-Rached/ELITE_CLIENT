@@ -24,7 +24,11 @@ const StyledNews = styled.div`
   overflow: hidden;
   height: 500px;
   background-color: #333;
-  width: 300px;
+  width: 100%;
+  max-width: 280px;
+  @media screen and (min-width: 700px) {
+    max-width: 300px;
+  }
   padding: 10px;
   border-radius: 7px;
   .top {
