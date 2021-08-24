@@ -49,7 +49,7 @@ function App() {
             <Link to="/">
               <div className="logo">
                 <img
-                  src="http://localhost:3000/images/fixed/logo.png"
+                  src="./images/fixed/logo.png"
                   alt="Elite"
                 />
                 <span className="navPx">elite</span>

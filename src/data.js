@@ -28,7 +28,7 @@ export const Posts=[
 ]
 export const User = {
     _id:1,
-    profileImage:"http://localhost:3000/images/fixed/wassim.gif",
+    profileImage:"./images/fixed/wassim.gif",
     name:"wa55death404",
     email:"wa55death404@gmail.com",
     password:"wa55death404",
