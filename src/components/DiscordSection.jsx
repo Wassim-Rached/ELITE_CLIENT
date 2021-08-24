@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function DiscordSection() {
@@ -13,7 +14,9 @@ export default function DiscordSection() {
           necessitatibus quos facilis!
         </p>
         <div className="img">
-          <img src="./images/fixed/join_discord.png" alt="" />
+          <a href="https://discord.gg/sEYGbvexnn" target="_blank">
+            <img src="./images/fixed/join_discord.png" alt="" />
+          </a>
         </div>
       </div>
     </DiscordSectionStyled>

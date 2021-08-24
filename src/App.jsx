@@ -11,14 +11,21 @@ import { User } from "./data.js";
 import SignInScreen from "./screens/SignInScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import RulesScreen from "./screens/RulesScreen";
+import UploadNewsScreen from "./screens/UploadNewsScreen";
 //components
+import Particle from "./components/Particles";
 import DontMiss from "./components/DontMiss";
+import UpdateAccountScreen from "./screens/UpdateAccountScreen";
+import GetRoleScreen from "./screens/GetRoleScreen";
+//icons
+import Brightness7Icon from "@material-ui/icons/Brightness7";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 function App() {
   const [theme, setTheme] = useState("darkTheme");
-  const [checked, setChecked] = useState(false);
   const [activeNav, setActiveNav] = useState(false);
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserInfo] = useState(false);
 
   useEffect(() => {
     document.documentElement.className = theme;
@@ -27,14 +34,15 @@ function App() {
   const themeToggler = () => {
     if (theme === "lightTheme") {
       setTheme("darkTheme");
-      setChecked(false);
     } else {
       setTheme("lightTheme");
-      setChecked(true);
     }
   };
   return (
     <BrowserRouter>
+      <div className="particle-con">
+        <Particle />
+      </div>
       <StyledApp>
         <header>
           <nav>
@@ -48,6 +56,7 @@ function App() {
               </div>
             </Link>
             <ul className="links">
+              <li onClick={() => setUserInfo(!userInfo)}>Connect</li>
               <li>
                 <a href="#HowToJoin">howToJoin</a>
               </li>
@@ -61,13 +70,19 @@ function App() {
                 <Link to="/rules">rules</Link>
               </li>
               <li>
-                <Switch
-                  value=""
-                  checked={checked}
-                  inputProps={{ "aria-label": "" }}
-                  size="medium"
-                  onClick={themeToggler}
-                />
+                <div className="containerThemeToggler">
+                  {theme !== "darkTheme" ? (
+                    <Brightness4Icon
+                      onClick={themeToggler}
+                      className="themeToggler"
+                    />
+                  ) : (
+                    <Brightness7Icon
+                      onClick={themeToggler}
+                      className="themeToggler"
+                    />
+                  )}
+                </div>
               </li>
               {userInfo ? (
                 <li>
@@ -107,6 +122,7 @@ function App() {
         </header>
         <div className={activeNav ? "navPhone activeNav" : "navPhone"}>
           <ul className="links">
+            <li onClick={() => setUserInfo(!userInfo)}>Connect</li>
             <li>
               <a onClick={() => setActiveNav(!activeNav)} href="#HowToJoin">
                 howToJoin
@@ -127,15 +143,20 @@ function App() {
                 rules
               </Link>
             </li>
-
             <li>
-              <Switch
-                value=""
-                checked={checked}
-                inputProps={{ "aria-label": "" }}
-                size="medium"
-                onClick={themeToggler}
-              />
+              <div className="containerThemeToggler">
+                {theme !== "darkTheme" ? (
+                  <Brightness4Icon
+                    onClick={themeToggler}
+                    className="themeToggler"
+                  />
+                ) : (
+                  <Brightness7Icon
+                    onClick={themeToggler}
+                    className="themeToggler"
+                  />
+                )}
+              </div>
             </li>
             {!userInfo ? (
               <>
@@ -143,13 +164,14 @@ function App() {
                   onClick={() => setActiveNav(!activeNav)}
                   className="register btn"
                 >
-                  register
+                  <Link to="/register">register</Link>
                 </li>
+
                 <li
                   onClick={() => setActiveNav(!activeNav)}
                   className="signin btn"
                 >
-                  signin
+                  <Link to="/signin">signin</Link>
                 </li>
               </>
             ) : (
@@ -167,22 +189,38 @@ function App() {
         <MainContainer>
           <swap>
             <Route path="/" component={HomeScreen} exact />
+            {/* <Route path="/rules" component={RulesScreen} exact /> */}
             <Route path="/signin" component={SignInScreen} exact />
             <Route path="/register" component={RegisterScreen} exact />
             <Route path="/profile/:userId" component={ProfileScreen} exact />
+            <Route
+              path="/profile/getRole/:userId"
+              component={GetRoleScreen}
+              exact
+            />
+            <Route
+              path="/profile/update/:userId"
+              component={UpdateAccountScreen}
+              exact
+            />
+            <Route
+              path="/admin/uploadNews"
+              component={UploadNewsScreen}
+              exact
+            />
           </swap>
           {!userInfo ? <DontMiss /> : ""}
         </MainContainer>
         <footer>
           <div className="bottom">All rights reserved</div>
         </footer>
-        {/* <div className="toTop">
+        <div className="toTop">
           <ScrollUpButton
             behavior={"smooth"}
             IconSize={"3rem"}
             appearCoordinate={1200}
           />
-        </div> */}
+        </div>
       </StyledApp>
     </BrowserRouter>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function DontMiss() {
   return (
@@ -33,7 +34,7 @@ export default function DontMiss() {
         </div>
       </form>
       <p className="dont">
-        Already have an account? <a href="#">SignIn</a>
+        Already have an account? <Link to="/signin">SignIn</Link>
       </p>
     </div>
   );
