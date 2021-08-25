@@ -35,7 +35,7 @@ export default function ProfileScreen() {
         ""
       )}
       <div className="topProfile">
-        <img src={User.profileImage} alt="" />
+        <img src={"." + User.profileImage} alt="" />
       </div>
       <div className="bottomProfile">
         <div className="containerProfile">

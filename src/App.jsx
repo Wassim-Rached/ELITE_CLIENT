@@ -21,6 +21,7 @@ import GetRoleScreen from "./screens/GetRoleScreen";
 //icons
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
+import RuleScreen from "./screens/RuleScreen";
 
 function App() {
   const [theme, setTheme] = useState("darkTheme");
@@ -48,10 +49,7 @@ function App() {
           <nav>
             <Link to="/">
               <div className="logo">
-                <img
-                  src="./images/fixed/logo.png"
-                  alt="Elite"
-                />
+                <img src="./images/fixed/logo.png" alt="Elite" />
                 <span className="navPx">elite</span>
               </div>
             </Link>
@@ -189,7 +187,6 @@ function App() {
         <MainContainer>
           <swap>
             <Route path="/" component={HomeScreen} exact />
-            {/* <Route path="/rules" component={RulesScreen} exact /> */}
             <Route path="/signin" component={SignInScreen} exact />
             <Route path="/register" component={RegisterScreen} exact />
             <Route path="/profile/:userId" component={ProfileScreen} exact />
@@ -203,6 +200,8 @@ function App() {
               component={UpdateAccountScreen}
               exact
             />
+            <Route path="/rules" component={RulesScreen} exact />
+            <Route path="/rules/:title" component={RuleScreen} exact />
             <Route
               path="/admin/uploadNews"
               component={UploadNewsScreen}

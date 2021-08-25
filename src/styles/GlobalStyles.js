@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
   --max-width:1100px;
   --all-width:100vw;
   --max-width-form:700px;
+  --transparent:#3838385e;
 }
 .lightTheme{
   --blue-color:#01a292;
@@ -34,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
   --max-width:1100px;
   --all-width:100vw;
   --max-width-form:700px;
+  --transparent:#3838385e;
 }
 
 *{
@@ -65,6 +67,11 @@ button{
   cursor: pointer;
 }
 //global items
+span.active{
+          color: var(--strong-font-color);
+background-color: #01a292;
+}
+
 .containerThemeToggler{
   display: flex;
   justify-content: center;

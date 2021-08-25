@@ -1,36 +1,32 @@
 import styled from "styled-components";
+import Rule from "../components/Rule";
+import { Rules } from "../data";
 
 export default function RulesScreen() {
   return (
     <StyledRulesScreen>
       <div className="containerRules">
-        <div>
-          <div className="top">
-            <div className="bottom">
-              <div className="cancel">read more...</div>
-            </div>
-          </div>
-        </div>
+        {Rules.map((rule) => {
+          return <Rule key={rule._id} rule={rule} />;
+        })}
       </div>
     </StyledRulesScreen>
   );
 }
 
 const StyledRulesScreen = styled.main`
-  background-size: cover;
+  padding-top: 68px;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   max-width: 100vw;
   overflow: hidden;
-  img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    min-width: 1820px;
-    right: 0;
-    height: 500px;
+  .containerRules {
+    margin: 0 auto;
+    padding: 30px 0;
+    max-width: 960px;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 30px;
   }
 `;
